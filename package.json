@@ -1,0 +1,23 @@
+{
+  "name": "log4js-protractor-appender",
+  "version": "0.0.1",
+  "description": "Log4js appender suited for Protractor",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manudwarf/log4js-protractor-appender.git"
+  },
+  "keywords": [
+    "log4js",
+    "protractor"
+  ],
+  "author": "Emmanuel Bourgerie <manu@bourgerie.fr>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/manudwarf/log4js-protractor-appender/issues"
+  },
+  "homepage": "https://github.com/manudwarf/log4js-protractor-appender#readme"
+}
