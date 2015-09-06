@@ -4,7 +4,7 @@
   "description": "Log4js appender suited for Protractor",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "./node_modules/.bin/istanbul cover --include-all-sources ./node_modules/.bin/jasmine-node test"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/manudwarf/log4js-protractor-appender/issues"
   },
-  "homepage": "https://github.com/manudwarf/log4js-protractor-appender#readme"
+  "homepage": "https://github.com/manudwarf/log4js-protractor-appender#readme",
+  "devDependencies": {
+    "istanbul": "^0.3.19"
+  },
+  "dependencies": {
+    "jasmine-node": "^1.14.5"
+  }
 }
