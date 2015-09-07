@@ -1,6 +1,6 @@
 {
   "name": "log4js-protractor-appender",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Log4js appender suited for Protractor",
   "main": "lib/protractorAppender.js",
   "scripts": {
