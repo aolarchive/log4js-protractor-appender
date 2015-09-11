@@ -16,20 +16,39 @@ Example:
 
     logger.info('Navigating to /');
     browser.get('/');
-    logger.info('Displayed text is:', element(by.css('#someText')).getText());
+    element(by.css('#someText')).getText().then(function (text) {
+        logger.info('Displayed text is: ', text);
+    });
     logger.info('Should be displayed last');
 
 Outputs without `log4js-protractor-appender`:
 
     [INFO] Navigating to /
     [INFO] Should be displayed last
-    [INFO] Displayed text is: [Promise object]
+    [INFO] Displayed text is: Some text
 
 Outputs with `log4js-protractor-appender`:
 
     [INFO] Navigating to /
     [INFO] Displayed text is: Some Text
     [INFO] Should be displayed last
+
+
+## Promises
+
+It resolves promises passed as arguments before outputting them.
+
+Example:
+
+    logger.info('Displayed text is:', element(by.css('#someText')).getText());
+
+Outputs without `log4js-protractor-appender`:
+
+    [INFO] Displayed text is: [Promise object]
+
+Outputs with `log4js-protractor-appender`:
+
+    [INFO] Displayed text is: Some Text
 
 
 ## Setup
