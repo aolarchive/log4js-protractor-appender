@@ -10,20 +10,20 @@ Log4js is a very powerful tool to provide logs in a NodeJS application and/or te
 
 `log4js-protractor-appender` ensures logging is integrated with the control flow, and display logging in the proper order.
 
+It also resolves promises passed as arguments before outputting them.
+
 Example:
 
     logger.info('Navigating to /');
     browser.get('/');
-    element(by.css('#someText')).getText().then(function (text) {
-      logger.info('Displayed text is: ', text);
-    });
+    logger.info('Displayed text is:', element(by.css('#someText')).getText());
     logger.info('Should be displayed last');
 
 Outputs without `log4js-protractor-appender`:
 
     [INFO] Navigating to /
     [INFO] Should be displayed last
-    [INFO] Displayed text is: Some Text
+    [INFO] Displayed text is: [Promise object]
 
 Outputs with `log4js-protractor-appender`:
 

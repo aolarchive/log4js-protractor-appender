@@ -3,20 +3,26 @@ describe('protractorAppender', function () {
   var controlFlow;
   var protractorAppender;
   var protractorMock;
+  var promise;
 
   beforeEach(function () {
     protractorAppender = require('../lib/protractorAppender');
+    promise = require('selenium-webdriver').promise;
     consoleMock = jasmine.createSpy('consoleMock');
 
     controlFlow = jasmine.createSpyObj('controlFlow', ['execute']);
     controlFlow.execute.andCallFake(function (callback) {
-      callback();
+      return callback();
     });
 
     protractorMock = {
       controlFlow: function () {
         return controlFlow;
       }
+    };
+
+    GLOBAL.protractor = {
+      promise: promise
     };
   });
 
@@ -32,19 +38,48 @@ describe('protractorAppender', function () {
   });
 
   describe('appender', function () {
-    var event = {};
+    var appender, event;
+
+    beforeEach(function () {
+      appender = protractorAppender.appender(consoleMock);
+      event = {
+        data: ['Hello']
+      };
+    })
 
     it('should default if protractor is not loaded', function () {
-      protractorAppender.appender(consoleMock)(event);
+      appender(event);
       expect(consoleMock).toHaveBeenCalledWith(event);
       expect(controlFlow.execute).not.toHaveBeenCalled();
     });
 
-    it('should use protractor\'s control flow', function () {
+    it('should use protractor\'s control flow', function (done) {
       GLOBAL.browser = protractorMock;
-      protractorAppender.appender(consoleMock)(event);
-      expect(consoleMock).toHaveBeenCalledWith(event);
-      expect(controlFlow.execute).toHaveBeenCalled();
+      appender(event).then(function () {
+        expect(consoleMock).toHaveBeenCalledWith(event);
+        expect(controlFlow.execute).toHaveBeenCalled();
+        done();
+      });
+    });
+
+    it('should handle promises in the log event', function (done) {
+      GLOBAL.browser = protractorMock;
+      deferred = promise.defer();
+      event.data.push(deferred.promise);
+
+      appender(event);
+
+      setTimeout(function () {
+        expect(consoleMock).not.toHaveBeenCalled();
+        deferred.fulfill('World');
+
+        setTimeout(function () {
+          expect(consoleMock).toHaveBeenCalledWith({
+            data: ['Hello', 'World']
+          });
+          done();
+        }, 50);
+      }, 50);
     });
   });
 });
