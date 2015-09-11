@@ -67,18 +67,16 @@ describe('protractorAppender', function () {
       deferred = promise.defer();
       event.data.push(deferred.promise);
 
-      appender(event);
+      appender(event).then(function () {
+        expect(consoleMock).toHaveBeenCalledWith({
+          data: ['Hello', 'World']
+        });
+        done();
+      });
 
       setTimeout(function () {
         expect(consoleMock).not.toHaveBeenCalled();
         deferred.fulfill('World');
-
-        setTimeout(function () {
-          expect(consoleMock).toHaveBeenCalledWith({
-            data: ['Hello', 'World']
-          });
-          done();
-        }, 50);
       }, 50);
     });
   });
