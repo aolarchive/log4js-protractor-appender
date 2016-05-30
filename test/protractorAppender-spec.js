@@ -69,7 +69,8 @@ describe('protractorAppender', function () {
 
       appender(event).then(function () {
         expect(consoleMock).toHaveBeenCalledWith({
-          data: ['Hello', 'World']
+          data: ['Hello', 'World'],
+          startTime: jasmine.any(Date)
         });
         done();
       });
