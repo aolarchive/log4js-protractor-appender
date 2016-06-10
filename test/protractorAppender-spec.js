@@ -21,7 +21,7 @@ describe('protractorAppender', function () {
       }
     };
 
-    GLOBAL.protractor = {
+    global.protractor = {
       promise: promise
     };
   });
@@ -54,7 +54,7 @@ describe('protractorAppender', function () {
     });
 
     it('should use protractor\'s control flow', function (done) {
-      GLOBAL.browser = protractorMock;
+      global.browser = protractorMock;
       appender(event).then(function () {
         expect(consoleMock).toHaveBeenCalledWith(event);
         expect(controlFlow.execute).toHaveBeenCalled();
@@ -63,7 +63,7 @@ describe('protractorAppender', function () {
     });
 
     it('should handle promises in the log event', function (done) {
-      GLOBAL.browser = protractorMock;
+      global.browser = protractorMock;
       deferred = promise.defer();
       event.data.push(deferred.promise);
 
