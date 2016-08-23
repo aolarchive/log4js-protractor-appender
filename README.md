@@ -1,6 +1,6 @@
 # log4js-protractor-appender
 
-[![Build Status](https://img.shields.io/travis/manudwarf/log4js-protractor-appender.svg?maxAge=2592000)](https://travis-ci.org/manudwarf/log4js-protractor-appender)
+[![Build Status](https://img.shields.io/travis/aol/log4js-protractor-appender.svg?maxAge=2592000)](https://travis-ci.org/aol/log4js-protractor-appender)
 [![npm](https://img.shields.io/npm/v/log4js-protractor-appender.svg?maxAge=2592000)](https://www.npmjs.com/package/log4js-protractor-appender)
 
 Log4js appender suited for Protractor
