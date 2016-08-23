@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manudwarf/log4js-protractor-appender.git"
+    "url": "git+https://github.com/aol/log4js-protractor-appender.git"
   },
   "keywords": [
     "log4js",
@@ -17,9 +17,9 @@
   "author": "Emmanuel Bourgerie <manu@bourgerie.fr>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/manudwarf/log4js-protractor-appender/issues"
+    "url": "https://github.com/aol/log4js-protractor-appender/issues"
   },
-  "homepage": "https://github.com/manudwarf/log4js-protractor-appender#readme",
+  "homepage": "https://github.com/aol/log4js-protractor-appender#readme",
   "devDependencies": {
     "istanbul": "^0.3.19",
     "jasmine-node": "^1.14.5",
