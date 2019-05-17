@@ -80,5 +80,18 @@ describe('protractorAppender', function () {
         deferred.fulfill('World');
       }, 50);
     });
+
+    it('should handle undefined in the log event', function (done) {
+      global.browser = protractorMock;
+      event.data.push(undefined);
+
+      appender(event).then(function () {
+        expect(consoleMock).toHaveBeenCalledWith({
+          data: ['Hello', undefined],
+          startTime: jasmine.any(Date)
+        });
+        done();
+      });
+    });
   });
 });
