@@ -93,5 +93,18 @@ describe('protractorAppender', function () {
         done();
       });
     });
+
+    it('should handle null value in the log event', function (done) {
+      global.browser = protractorMock;
+      event.data.push(null);
+
+      appender(event).then(function () {
+        expect(consoleMock).toHaveBeenCalledWith({
+          data: ['Hello', null],
+          startTime: jasmine.any(Date)
+        });
+        done();
+      });
+    });
   });
 });
